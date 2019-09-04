@@ -19,6 +19,12 @@ describe('Bubble Sort', function(){
     expect(sort.swap.calls.count()).toEqual(( (randomNum * (randomNum - 1)) / 2 ));
     });
 
+    it('takes a custom comparer function', function(){
+        expect( sort.bubbleSort(randomArray, function (a, b) {
+            return a > b;
+        }) ).toEqual( [74, 58, 53, 44, 40, 24, 21, 14, 12, 2] );
+    });
+  
     it('handles an empty array', function(){
       expect( sort.bubbleSort([]) ).toEqual( [] );
     });
