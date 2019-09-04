@@ -3,6 +3,7 @@ describe('Bubble Sort', function(){
     const randomArray = [14, 21, 74, 53, 12, 2, 58, 40, 44, 24];
     const lettersArray = ['h', 'y', 'g', 'd', 'k', 'y', 's', 't']
     const reversedDuplicateArray = [7, 6, 5, 5, 5, 4, 3, 2, 1];
+    const arrOfObj = [{ age: 4 }, { age: 8 }, { age: 2 }, { age: 9 }];
     
     beforeEach(function () {
         spyOn(sort, 'swap').and.callThrough();
@@ -23,8 +24,13 @@ describe('Bubble Sort', function(){
         expect( sort.bubbleSort(randomArray, function (a, b) {
             return a > b;
         }) ).toEqual( [74, 58, 53, 44, 40, 24, 21, 14, 12, 2] );
+        expect( sort.bubbleSort(arrOfObj, function (a, b) {
+            if (a.age > b.age) return 0;
+            if (a.age < b.age) return 1;
+            return 0;
+        }) ).toEqual( [{ age: 2 }, { age: 4 }, { age: 8 }, { age: 9 }] );
     });
-  
+
     it('handles an empty array', function(){
       expect( sort.bubbleSort([]) ).toEqual( [] );
     });
